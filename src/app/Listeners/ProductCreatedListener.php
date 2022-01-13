@@ -3,8 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\ProductCreated;
+use App\Notifications\ProductCreatedNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Notification;
 
 class ProductCreatedListener
 {
@@ -26,6 +28,6 @@ class ProductCreatedListener
      */
     public function handle(ProductCreated $event)
     {
-        dd($event->product);
+        Notification::route('mail', env('MAIL_ADDRESS'))->notify(new ProductCreatedNotification($event->product));
     }
 }
