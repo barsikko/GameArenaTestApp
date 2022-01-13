@@ -44,13 +44,14 @@ eId (int|null)
 
 ## ИНСТРУКЦИИ ПО УСТАНОВКЕ
 
-    git clone https://github.com/barsikko/TaxiApiTestApp.git
-    cd TaxiApiTestApp
+    git clone https://github.com/barsikko/GameArenaTestApp.git
+    cd GameArenaTestApp
     docker-compose up -d --build
-    cp src/.env.example src/.env
-    cd src
-    composer update
-    cd ../
-    docker-compose php php artisan migrate
+    docker-compose exec php sh
+    cp .env.example .env
+    composer install
+    php artisan key:generate
+    php artisan migrate
+    exit  
 
-- После установке сервис доступен по 127.0.0.1:8088
+- После установке сервис доступен по адесу: http://127.0.0.1:8088
